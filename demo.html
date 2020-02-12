@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="keys.js"></script>
+<link rel="stylesheet" href="bootstrap.min.css">
+<style>
+#spot{
+	position: relative;
+	margin: auto;
+	width: 80%;
+	text-align: center;
+}
+#output{
+	position: relative;
+	margin-top: 50px;
+	margin: auto;
+	width: 80%;
+	text-align: center;
+	background-color: #1e1e1e;
+	padding: 20px;
+}
+</style>
+</head>
+<body>
+<br><br>
+
+<div id="spot">
+	<h2 style="color: #e1e1e1;">Private Key Hex</h2><br>
+	<b>Network: </b><select id="networkmenu"><option value="mainnet">Mainnet</option><option value="testnet">Testnet</option></select>
+	<br><br>
+	<input type="text" id="hexinput" class="form-control" value="0000000000000000000000000000000000000000000000000000000000000001"><br>
+	<button id="gobtn">Go</button>
+</div>
+<br><br>
+
+<div id="output">
+	
+</div>
+
+<script>
+
+let gobtn = document.getElementById("gobtn");
+
+gobtn.onclick = function(){
+	var hexinput = document.getElementById("hexinput").value;
+	var network = document.getElementById("networkmenu").value;
+	
+	if(network==="mainnet"){
+		var makenewuncompressed = keys.privateKeyUncompressed(hexinput, false);
+		var makenewcompressed = keys.privateKeyFrom(hexinput, false);
+	} else {
+		var makenewuncompressed = keys.privateKeyUncompressed(hexinput, true);
+		var makenewcompressed = keys.privateKeyFrom(hexinput, true);
+	}
+	
+	document.getElementById("output").innerHTML = 'Compressed Private Key: '+makenewcompressed.pk+'<br><br>Uncompressed Private Key: '+makenewuncompressed.pk;
+	
+}
+
+
+</script>
+</body>
+</html>
