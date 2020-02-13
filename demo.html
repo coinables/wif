@@ -25,7 +25,7 @@
 <br><br>
 
 <div id="spot">
-	<h2 style="color: #e1e1e1;">Private Key Hex</h2><br>
+	<h2 style="color: #e1e1e1;">Private Key Hex</h2><p>Input a hex value between 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001 and FFFFFFFF FFFFFFFF FFFFFFFF FFFFFFFE BAAEDCE6 AF48A03B BFD25E8C D0364140</p><br>
 	<b>Network: </b><select id="networkmenu"><option value="mainnet">Mainnet</option><option value="testnet">Testnet</option></select>
 	<br><br>
 	<input type="text" id="hexinput" class="form-control" value="0000000000000000000000000000000000000000000000000000000000000001"><br>
@@ -43,6 +43,8 @@ let gobtn = document.getElementById("gobtn");
 
 gobtn.onclick = function(){
 	var hexinput = document.getElementById("hexinput").value;
+	//reomve spaces
+	hexinput = hexinput.replace(/^\s+|\s+$/g, "").replace(/\s+/g, " "); 
 	var network = document.getElementById("networkmenu").value;
 	
 	if(network==="mainnet"){
